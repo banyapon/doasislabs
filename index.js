@@ -1,23 +1,26 @@
-const bodyParser = require('body-parser');
+const { request, response } = require('express');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const Users = require('./users');
-
 var randomID = gerRandomInt(9999);
-const port = process.env.PORT || 3000;
-
 var urlencodedParser = bodyParser.urlencoded({extended:false});
 
-function gerRandomInt(max){
-    return Math.floor(Math.random()*Math.floor(max));
+function gerRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
 }
-mongoose.connect('mongodb+srv://daydevth:3qpJcFYXvnBdtNe7@cluster0.ejroo.mongodb.net/?retryWrites=true&w=majority',{
+
+mongoose.connect('mongodb+srv://daydevth:3qpJcFYXvnBdtNe7@cluster0.ejroo.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true
 });
 
-app.get('/',(request, response)=>{
+app.get('/', (request, response) => {
     response.sendFile(__dirname + '/index.html');
+});
+
+app.get('/thankyou', (request,response)=>{
+    response.sendFile(__dirname + '/thankyou.html');
 });
 
 app.post('/',urlencodedParser, async (request,response)=>{
@@ -35,10 +38,6 @@ app.post('/',urlencodedParser, async (request,response)=>{
     response.redirect('/thankyou');
 });
 
-app.get('/thankyou', (request,response)=>{
-    response.sendFile(__dirname + '/thankyou.html');
+app.listen(3000, () => {
+    console.log('Application is running on port 3000');
 });
-
-app.listen(port, () => {
-    console.log("Starting node.js at port " + port);
-  });
