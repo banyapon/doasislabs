@@ -1,26 +1,18 @@
+const bodyParser = require('body-parser');
 const express = require('express');
-var bodyParser = require(body-parser);
 const app = express();
 const mongoose = require('mongoose');
 const Users = require('./users');
-//const eseeion = require('express-session');
 
 var randomID = gerRandomInt(9999);
+const port = process.env.PORT || 3000;
 
-var urlencodeParser = bodyParser.urlencoded({extended:false});
-
-//session
-app.unsubscribe(session({
-    secret: "doasis12345",
-    resave: true,
-    saveUnititialized: true
-}));
+var urlencodedParser = bodyParser.urlencoded({extended:false});
 
 function gerRandomInt(max){
-    return Math.floor(Math.random()*Math.floor(max).floor(max));
+    return Math.floor(Math.random()*Math.floor(max));
 }
-
-mongoose.connect('mongodb+srv://daydev:6Og5udKGHjjdLNHQ@cluster0.ejroo.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://daydevth:3qpJcFYXvnBdtNe7@cluster0.ejroo.mongodb.net/?retryWrites=true&w=majority',{
     useNewUrlParser: true
 });
 
@@ -28,12 +20,11 @@ app.get('/',(request, response)=>{
     response.sendFile(__dirname + '/index.html');
 });
 
-app.post('/'.urlencodeParser, async (request,response)=>{
-    request.session.uid = randomID;
+app.post('/',urlencodedParser, async (request,response)=>{
     console.log('body_data:',request.body);
     const user = new Users(
         {
-            "uid": request.session.uid,
+            "uid": randomID,
             "name": request.body["name"],
             "email": request.body["email"],
             "password": request.body["password"],
@@ -47,3 +38,7 @@ app.post('/'.urlencodeParser, async (request,response)=>{
 app.get('/thankyou', (request,response)=>{
     response.sendFile(__dirname + '/thankyou.html');
 });
+
+app.listen(port, () => {
+    console.log("Starting node.js at port " + port);
+  });

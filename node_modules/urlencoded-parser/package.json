@@ -1,0 +1,40 @@
+{
+  "name": "urlencoded-parser",
+  "version": "1.0.0",
+  "description": "Takes urlencoded form data in an express.js request object and turns it into a nested json object.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel source -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codyspring/urlencoded-parser.git"
+  },
+  "keywords": [
+    "urlencode",
+    "express",
+    "parse",
+    "json",
+    "nest"
+  ],
+  "author": "Cody Spring <cody@svgcreative.com> (https://codyspring.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codyspring/urlencoded-parser/issues"
+  },
+  "homepage": "https://github.com/codyspring/urlencoded-parser#readme",
+  "peerDependencies": {
+    "body-parser": "1.x"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-airbnb": "^2.2.3",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
+  }
+}
