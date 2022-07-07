@@ -126,7 +126,7 @@
             /* Serialize the submitted form control values to be sent to the web server with the request */
             var formValues = $(this).serialize();
             // Send the form data using post
-            $.post("https://daydevhubs.herokuapp.com/", formValues, function (data) {
+            $.post("http://localhost:3000/", formValues, function (data) {
                 // Display the returned data in browser
                 $("#result").html(data);
                 window.close();
